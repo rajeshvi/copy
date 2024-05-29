@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+                                                                                                <input type="text" id="userInput" style="width:94%" placeholder="Question" />
+                                                                                                <button>search</button>
+                                                            <textarea rows="19" cols="149" id="history" placeholder="Answer"></textarea>
+                                                            <progress id="file" value="0" max="1000" style="width:100%"></progress>
+                                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+                                                                                                    
+    $().ready(function () {
+                                                                    
+        $("button").click(function () {
+            myTimeout = setInterval(end, 100);
+            $.get("/phi3/getphi3", { userInput: $("#userInput").val() }, function (data) {
+                $("#history").val(data);
+                $("#file").attr("value", 1000);
+                clearInterval(myTimeout);
+            });
+        });
+        i = 0;
+        function end() {
+                                                                                                            
+            i++;
+                                                                                                            
+            $("#file").attr("value", i);
+                                                                                                            
+                                                                                                            
+                                                                                                            
+        }
+                                                                                                        
+                                                                                                        
+    });
+</script>
+}
